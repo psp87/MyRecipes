@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "QfL7hmS0NaaKPPaUIjwYLALdHmYb/VnB+TygaidfUuN80cZ7/27hDjMZ5ms15pIOwPyPI3PyA/QOxEHvKYDyOw==",
+  "success": true,
+  "projectFilePath": "E:\\Docs\\Programming\\source\\repos\\Projects\\MyRecipes\\Services\\MyRecipes.Services\\MyRecipes.Services.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\psp87\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.312\\stylecop.analyzers.1.2.0-beta.312.nupkg.sha512",
+    "C:\\Users\\psp87\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.312\\stylecop.analyzers.unstable.1.2.0.312.nupkg.sha512"
+  ],
+  "logs": []
+}

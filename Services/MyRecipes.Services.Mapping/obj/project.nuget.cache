@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "hAun6UFGYa+zNduge1um7fWa552U3HJLdOYjKcF9oXTSeAkTG+p52czWGQHSyu4/l2/Xhlftk/G4HUb1+ItfAg==",
+  "success": true,
+  "projectFilePath": "E:\\Docs\\Programming\\source\\repos\\Projects\\MyRecipes\\Services\\MyRecipes.Services.Mapping\\MyRecipes.Services.Mapping.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\psp87\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\psp87\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\psp87\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.312\\stylecop.analyzers.1.2.0-beta.312.nupkg.sha512",
+    "C:\\Users\\psp87\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.312\\stylecop.analyzers.unstable.1.2.0.312.nupkg.sha512",
+    "C:\\Users\\psp87\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
