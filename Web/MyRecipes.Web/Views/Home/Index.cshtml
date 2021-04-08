@@ -9,10 +9,15 @@
     <div class="col-md-4 offset-md-4">
         <p>We have:</p>
         <ul class="list-group">
-            <li class="list-group-item bg-info">Recipes: @Model.RecipesCount</li>
-            <li class="list-group-item bg-primary">Categories: @Model.CategoriesCount</li>
-            <li class="list-group-item bg-info">Images: @Model.ImagesCount</li>
-            <li class="list-group-item bg-primary">Recipes: @Model.IngredientsCount</li>
+            <li class="list-group-item bg-light">Recipes: @Model.RecipesCount</li>
+            <li class="list-group-item bg-danger">Categories: @Model.CategoriesCount</li>
+            <li class="list-group-item bg-light">Images: @Model.ImagesCount</li>
+            <li class="list-group-item bg-danger">Ingredients: @Model.IngredientsCount</li>
         </ul>
     </div>
+</div>
+
+<div class="text-center">
+    <br />
+    <a class="btn btn-primary" asp-controller="Home" asp-action="SeedRecipes">Seed recipes from supichka.com</a>
 </div>

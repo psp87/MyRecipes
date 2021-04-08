@@ -2,19 +2,23 @@
 {
     using System.Diagnostics;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
     using MyRecipes.Data;
+    using MyRecipes.Services;
     using MyRecipes.Web.ViewModels;
     using MyRecipes.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
         private readonly ApplicationDbContext db;
+        private readonly ISupichkaScraperService scraperService;
 
-        public HomeController(ApplicationDbContext db)
+        public HomeController(ApplicationDbContext db, ISupichkaScraperService scraperService)
         {
             this.db = db;
+            this.scraperService = scraperService;
         }
 
         public IActionResult Index()
@@ -28,6 +32,13 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> SeedRecipes()
+        {
+            await this.scraperService.DbRecipeSeeder();
+
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         public IActionResult Privacy()

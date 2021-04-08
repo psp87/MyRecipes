@@ -10,7 +10,7 @@ using MyRecipes.Data;
 namespace MyRecipes.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210301122251_InitialCreate")]
+    [Migration("20210408125148_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -291,6 +291,9 @@ namespace MyRecipes.Data.Migrations
                     b.Property<int>("RecipeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("RemoteImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -339,12 +342,6 @@ namespace MyRecipes.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("CookingTime")
-                        .HasColumnType("time");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -363,10 +360,13 @@ namespace MyRecipes.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PortionsCount")
-                        .HasColumnType("int");
+                    b.Property<string>("OriginalUrl")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("PreparationTime")
+                    b.Property<string>("PortionsCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("Time")
                         .HasColumnType("time");
 
                     b.Property<string>("UserId")
@@ -374,13 +374,33 @@ namespace MyRecipes.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("MyRecipes.Data.Models.RecipeCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("RecipeCategories");
                 });
 
             modelBuilder.Entity("MyRecipes.Data.Models.RecipeIngredient", b =>
@@ -478,19 +498,30 @@ namespace MyRecipes.Data.Migrations
 
             modelBuilder.Entity("MyRecipes.Data.Models.Recipe", b =>
                 {
+                    b.HasOne("MyRecipes.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyRecipes.Data.Models.RecipeCategory", b =>
+                {
                     b.HasOne("MyRecipes.Data.Models.Category", "Category")
                         .WithMany("Recipes")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("MyRecipes.Data.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                    b.HasOne("MyRecipes.Data.Models.Recipe", "Recipe")
+                        .WithMany("Categories")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Category");
 
-                    b.Navigation("User");
+                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("MyRecipes.Data.Models.RecipeIngredient", b =>
@@ -533,6 +564,8 @@ namespace MyRecipes.Data.Migrations
 
             modelBuilder.Entity("MyRecipes.Data.Models.Recipe", b =>
                 {
+                    b.Navigation("Categories");
+
                     b.Navigation("Images");
 
                     b.Navigation("Ingredients");
